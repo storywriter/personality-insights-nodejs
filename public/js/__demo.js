@@ -95,12 +95,9 @@ $(document).ready(function() {
 
   var SAMPLE_TEXTS = [ 'sample1', 'sample2', 'sample3', 'ar', 'ja'];
   var textCache = {};
-  var spotifyEvaluationJSONFile = 'getwild';
-  var spotifyEvaluationJSON = {};
 
   globalState.selectedSample = SAMPLE_TEXTS[0];
   globalState.languageSelected = undefined;
-  globalState.spotifyEvaluationJSONFile = spotifyEvaluationJSONFile;
 
   var $big5Traits = $('.output-big-5--traits');
   var $needsTraits = $('.output-needs--traits');
@@ -142,14 +139,12 @@ $(document).ready(function() {
 
 
   function setTextSample(value, readonly) {
-/*
     $('#inputText').val(value);
     if (readonly) {
       $('#inputText').attr('readonly', 'readonly');
     } else {
       $('#inputText').removeAttr('readonly');
     }
-*/
   }
 
   function setLoadingState() {
@@ -170,7 +165,6 @@ $(document).ready(function() {
       globalState.selectedLanguage = $(this).attr('value');
     });
 
-/*
     $('input[name="text-sample"]').click(function() {
       var textFile = $(this).attr('data-file'),
         orientation = $(this).attr('data-orientation');
@@ -189,7 +183,6 @@ $(document).ready(function() {
       loadSampleText(textFile);
       updateWordCount();
     });
-*/
 
     $(window).resize(function() {
       if ($(window).width() < 800) {
@@ -202,7 +195,6 @@ $(document).ready(function() {
       }
     });
 
-/*
     $('input#text-custom').unbind('click').click(function() {
       globalState.selectedSample = 'custom';
 
@@ -217,7 +209,6 @@ $(document).ready(function() {
         $('input#lang-en').trigger('click');
       }
     });
-*/
 
     $('input[name="twitter"]').click(function() {
       var twitterId = $(this).val();
@@ -239,7 +230,6 @@ $(document).ready(function() {
       });
     });
 
-/*
     $inputForm2.submit(function(e) {
       e.cancelBubble = true;
       e.preventDefault();
@@ -255,8 +245,6 @@ $(document).ready(function() {
 
       getProfileForText($('.input--text-area').val(), {language: lang});
     });
-*/
-
   }
 
   function setTextSummary(profile) {
@@ -265,62 +253,6 @@ $(document).ready(function() {
     $('#personalitySummary').empty();
     $('#personalitySummary').append('<p class="base--p">' + summary.split('\n').join('</p><p class="base--p">') + '</p>');
   }
-
-
-  /* Spotify */
-  function compareSpotifyEvaluation(data) {
-
-_c( data );
-
-    var difference, dTemp; /* 差分の総計 */
-    var trackNum; /* おすすめする楽曲No */
-    var trackName; /* おすすめする楽曲名 */
-    var trackArtists; /* おすすめする楽曲のアーティスト */
-    var trackURI, url; /* おすすめする楽曲のURI */
-
-    difference = 9999; // 初期化
-
-    $.each( spotifyEvaluationJSON, function(){
-
-      dTemp = 0; // 初期化
-
-      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'personality' ][ 0 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'danceability' ] - data[ 'personality' ][ 1 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'duration_ms' ] - data[ 'personality' ][ 2 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'energy' ] - data[ 'personality' ][ 3 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'instrumentalness' ] - data[ 'personality' ][ 4 ][ 'percentile' ] );
-
-      dTemp = dTemp + Math.abs( this[ 'liveness' ] - data[ 'needs' ][ 0 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'loudness' ] - data[ 'needs' ][ 1 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'mode' ] - data[ 'needs' ][ 2 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'speechiness' ] - data[ 'needs' ][ 3 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'tempo' ] - data[ 'needs' ][ 4 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'valence' ] - data[ 'needs' ][ 5 ][ 'percentile' ] );
-
-
-      if( difference > dTemp ){
-        difference = dTemp;
-        trackNum = this[ 'track_number' ];
-        trackName = this[ 'name' ];
-        trackArtists = this[ 'artists' ];
-        trackURI = this[ 'uri' ];
-      }
-
-    } );
-
-    trackURI = trackURI.split(":");
-    url = trackURI[2];
-
-    // 楽曲を表示
-    $( '#js-track' ).text( '#' + trackNum + ' ' + trackName + ' - ' + trackArtists );
-    $( '#js-spotify' ).html( '<a href="https://open.spotify.com/track/' + url + '" target="_blank">' + 'この曲を Spotify で聴く' + '</a>' );
-
-  }
-
-
-
-
-
 
   /**
    * Toggle Big 5 Subtraits
@@ -346,8 +278,8 @@ _c( data );
   });
 
   $outputJSONButton.click(function() {
-    // $outputJSON.toggle();
-    // scrollTo($outputJSON);
+    $outputJSON.toggle();
+    scrollTo($outputJSON);
   });
 
   function getProfileForTwitterUser(userId, options) {
@@ -436,9 +368,6 @@ _c( data );
         $loading.hide();
         $output.show();
         scrollTo($outputHeader);
-
-        compareSpotifyEvaluation( data );
-
         loadOutput(data);
         updateJSON(data);
         loadConsumptionPreferences(data);
@@ -552,7 +481,6 @@ _c( data );
   }
 
   function loadConsumptionPreferences(data) {
-    /*
     var cpsect = $('.output-summary--consumption-behaviors--section');
     var behaviors = $('.output-summary--consumption-behaviors--section');
     var behaviors_likely = $('.output-summary--likely-behaviors');
@@ -602,7 +530,6 @@ _c( data );
       behaviors_likely.hide();
       behaviors_unlikely.hide();
     }
-    */
   }
 
 
@@ -613,53 +540,44 @@ _c( data );
     loadWordCount(data);
 
     // Add wrapped traits data from the user profile into the html
-/*
     $big5Traits.append(_.template(big5PercentTemplate.innerHTML, {
       items: wrapTraits(data).sort(sortScores),
       tooltips: function(traitId) {
         return renderMarkdown(TraitDescriptions.description(traitId));
       }
     }));
-*/
 
     // Add wrapped needs data from the specified user profile into the html
-/*
     $needsTraits.append(_.template(outputStatsPercentTemplate.innerHTML, {
       items: wrapNeeds(data).sort(sortScores).slice(0, 5),
       tooltips: function(traitId) {
         return renderMarkdown(TraitDescriptions.description(traitId));
       }
     }));
-*/
 
     // Add wrapped needs 'more' data from the specified user profile into the html
-/*
     $needsMoreTraits.append(_.template(outputStatsPercentTemplate.innerHTML, {
       items: wrapNeeds(data).sort(sortScores).slice(5, wrapNeeds(data).length),
       tooltips: function(traitId) {
         return renderMarkdown(TraitDescriptions.description(traitId));
       }
     }));
-*/
+
     // Add wrapped values data from the specified user profile into the html
-/*
     $valuesTraits.append(_.template(outputStatsPercentTemplate.innerHTML, {
       items: wrapValues(data).sort(sortScores),
       tooltips: function(traitId) {
         return renderMarkdown(TraitDescriptions.description(traitId));
       }
     }));
-*/
+
     // NOTE: v3 update - is this necessary here? - should it be moved elsewhere?
-/*
     globalState.currentProfile = data;
-*/
 
   }
 
 
   function wrapTraits(data){
-/*
     return data.personality.map(function(obj) {
       const traitName = TraitNames.name(obj.trait_id);
       return {
@@ -676,11 +594,9 @@ _c( data );
         }).sort(function(a, b) { return b.score - a.score; })
       }
     });
-*/
   }
 
   function wrapNeeds(data) {
-/*
     return data.needs.map(function(obj) {
       const traitName = TraitNames.name(obj.trait_id);
       return {
@@ -689,11 +605,9 @@ _c( data );
         score: Math.round(obj.percentile * 100)
       }
     });
-*/
   }
 
   function wrapValues(data) {
-/*
     return data.values.map(function(obj) {
       const traitName = TraitNames.name(obj.trait_id);
       return {
@@ -702,14 +616,12 @@ _c( data );
         score: Math.round(obj.percentile * 100)
       };
     });
-*/
   }
 
-/*
+
   $inputTextArea.on('propertychange change click keyup input paste', function() {
     updateWordCount();
   });
-*/
 
   function loadWordCount(data) {
     $('.output--word-count-number').text(data.word_count);
@@ -753,8 +665,8 @@ _c( data );
     $('.output-big-5--sub-tree').hide();
     $needsMoreTraits.hide();
     $outputSummaryText.empty();
-    // $outputJSONCode.empty();
-    // $outputJSON.hide();
+    $outputJSONCode.empty();
+    $outputJSON.hide();
   }
 
 
@@ -763,7 +675,6 @@ _c( data );
   }
 
   function preloadSampleTexts(callback) {
-/*
     var shared = {
       done: 0
     };
@@ -777,11 +688,9 @@ _c( data );
         }
       }).done();
     });
-*/
   }
 
   function loadSampleText(name) {
-/*
     if (textCache[name]) {
       setTextSample(textCache[name], true);
       updateWordCount();
@@ -793,21 +702,7 @@ _c( data );
         updateWordCount();
       }).done();
     }
-*/
   }
-
-
-  /* Spotify */
-  function loadSpotifyEvaluationJSON(name) {
-
-    $Q.get('/data/' + name + '.json').then(function(text) {
-      spotifyEvaluationJSON = text;
-    }).done();
-
-  }
-
-
-
 
   function showHiddenLanguages() {
     var enableLang = {
@@ -854,20 +749,12 @@ _c( data );
     $('input[name="text-sample"]:first').attr('checked', true);
 
     globalState.selectedTwitterUser = $('input[name="twitter"]:first').val();
-
-
     showHiddenLanguages();
     preloadSampleTexts(function() {
       loadSampleText(globalState.selectedSample);
     });
     registerHandlers();
     $inputTextArea.addClass('orientation', 'left-to-right');
-
-
-    /* Spotify */
-    loadSpotifyEvaluationJSON( globalState.spotifyEvaluationJSONFile );
-
-
 
     if (selfAnalysis() && TWITTER_USER.handle) {
       setSelfAnalysis();
@@ -882,7 +769,7 @@ _c( data );
   }
 
   function countWords(str) {
-    // return str.split(' ').length;
+    return str.split(' ').length;
   }
 
   function updateWordCount() {
@@ -890,10 +777,10 @@ _c( data );
   }
 
   function updateJSON(results) {
-    // $outputJSONCode.html(JSON.stringify(results, null, 2));
-    // $('.code--json').each(function(i, b) {
-    //  hljs.highlightBlock(b);
-    // });
+    $outputJSONCode.html(JSON.stringify(results, null, 2));
+    $('.code--json').each(function(i, b) {
+      hljs.highlightBlock(b);
+    });
   }
 
   initialize();

@@ -5,78 +5,46 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="og:title" content="IBM Watson Personality Insights">
-  <meta name="og:description" content="Gain insight into how and why people think, act, and feel the way they do. This service applies linguistic analytics and personality theory to infer attributes from a person's unstructured text.">
+  <meta name="og:title" content="俺に最適な Get Wild を Watson が選んでくれる">
+  <meta name="og:description" content="俺に最適な Get Wild を IBM Watson が選んでくれます。">
+  <meta property="og:image" content="/images/ogp-image.png"><!-- @ToDo: 追加する -->
   <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
   <link rel="icon" href="/images/favicon.png" type="image/png">
+
+  <!-- Sample CSS -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Debug Tool -->
+  <script>
+    var _c = _C = console.log;
+  </script>
+
+  <!-- Modernizr -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <!-- Original CSS: Bootstrap-extend -->
+  <link rel="stylesheet" href="css/bootstrap-extend.css">
+
 </head>
 
 <body>
-  <!-- top level heading -->
-  <header class="_demo--heading">
-    <div class="_demo--container">
-      <a class="wordmark" href="http://www.ibm.com/watson/developer/">
-        <span class="wordmark--left"><$= __("header-ibm") $></span>
-        <span class="wordmark--right"><$= __("header-wdc") $></span>
-      </a>
-      <nav class="heading-nav" role="menubar">
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://www.ibm.com/watson/products-services/" role="menuitem">
-          <$= __("header-services") $>
-        </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://www.ibm.com/watson/developercloud/doc/index.html" role="menuitem">
-          <$= __("header-docs") $>
-        </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="http://www.ibm.com/watson/developercloud/starter-kits.html" role="menuitem">
-          <$= __("header-starterkit") $>
-        </a>
-        </li>
-        <li class="base--li heading-nav--li" role="presentation">
-          <a class="heading-nav--item" href="https://developer.ibm.com/watson/" role="menuitem">
-          <$= __("header-community") $>
-        </a>
-        </li>
-      </nav>
-    </div>
-  </header>
+
   <div class="_demo--banner">
-    <div class="_demo--container">
-      <div class="banner--service-icon-container">
-        <img class="banner--service-icon" src="images/service-icon.svg" alt="Personality Insights API Icon">
-      </div>
-      <div class="banner--service-info">
-        <h1 class="banner--service-title base--h1">
-          <img class="banner--service-icon_INLINE" src="images/service-icon.svg" alt="Personality Insights API Icon"> <$= __("header-title-pi") $>
-        </h1>
-        <div class="banner--service-description">
-          <$= __("header-description") $>
-          <div class="banner--gdpr-description">
-            <$= __("gdpr-description") $>
-          </div>
-        </div>
-        <div class="banner--service-resource">
-          <span class="icon icon-link"></span>
-          <strong><$= __("header-resources") $></strong>
-        </div>
-        <div class="banner--service-links">
-          <li class="base--li banner--service-link-item">
-            <a href="http://www.ibm.com/watson/developercloud/personality-insights/api/" class="base--a"><$= __("header-apiref") $></a>
-          </li>
-          <li class="base--li banner--service-link-item">
-            <a href="https://console.bluemix.net/docs/services/personality-insights/getting-started.html" class="base--a"><$= __("header-documentation") $></a>
-          </li>
-          <li class="base--li banner--service-link-item">
-            <a href="https://github.com/watson-developer-cloud/personality-insights-nodejs" class="base--a"><$= __("header-fork") $></a>
-          </li>
-          <li class="base--li banner--service-link-item">
-            <a href="https://console.bluemix.net/registration/?target=%2Fcatalog%2Fservices%2Fpersonality-insights%3FhideTours%3Dtrue%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmc%3D-_-Watson%2BCore_Watson%2BCore%2B-%2BPlatform-_-WW_WW-_-wdc-ref%26cm_mmca1%3D000000OF%26cm_mmca2%3D10000409" class="base--button base--button_fill"><$= __("header-bluemix") $></a>
-          </li>
-        </div>
+    <div class="container mt10">
+      <h1 ckass="mb00"><$= __("header-title-pi") $></h1>
+      <div class="small">
+        <$= __("header-description") $>
       </div>
     </div>
   </div>
