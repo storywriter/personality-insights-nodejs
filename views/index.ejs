@@ -1,141 +1,141 @@
 <$ include partials/header $>
-  <div class="_demo--container">
-    <div class="_content input">
+  <div class="container-fluid">
+    <div class="container input p-3">
 
-        <span class="icon-hyperlink">
-          <span class="icon icon-reset"></span>
-          <button class="base--a icon-hyperlink--button icon-hyperlink--button_BLANK input--reset-button" href="" type="reset">
-            <$= __("button-reset") $>
-          </button>
-        </span>
+
+
+      <!-- 動作検証用 -->
+      <div id="twitter-panel" style="display: none;">
+        <form class="input--form1">
+
+          <div class="input--choose">
+            <$= __("option-choose") $>
+          </div>
+
+          <input role="radio" class="base--radio" type="radio" id="twitter-Oprah" name="twitter" value="Oprah" data-lang="en">
+          <label class="base--inline-label input--radio" for="twitter-Oprah">
+            <img class="input--thumb" src="/images/twitter/oprah.png">@Oprah (<$= __("twitterlang-en") $>)</label>
+
+          <input role="radio" class="base--radio" type="radio" id="twitter-faridyu" name="twitter" value="faridyu" data-lang="ja">
+          <label class="base--inline-label input--radio" for="twitter-faridyu">
+            <img class="input--thumb" src="/images/twitter/faridyu.jpg">@faridyu (<$= __("twitterlang-ja") $>)</label>
+
+          <div class="input--button-container">
+            <button type="submit" class="btn btn-primary input--submit-button1"><$= __("button-analyze") $></button>
+          </div>
+        </form>
+      </div>
+      <!-- / 動作検証用 -->
+
+      <div class="text-right mb-2">
+          <button class="btn btn-link input--reset-button" href="" type="reset"><i class="fas fa-redo"></i><$= __("button-reset") $></button>
+      </div>
+
+
+      <div id="your-twitter-panel">
+
+        <form class="input--form3 auth-form" method='get' action='/auth/twitter'>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-lg btn-primary input--submit-button3"><$= __("button-analyzetwitter") $></button>
+          </div>
+          <div class="text-left">
+            <small><$= __("note-twitter") $></small>
+          </div>
+
+        </form>
+
+        <form class="input-form4 analysis-form" style="display:none">
+
+          <div class="input--choose"><$= __("analysis-title") $></div>
+          <input role="radio" class="base--radio" type="radio" id="my-twitter" name="twitter" value="myself">
+          <label class="base--inline-label input--radio" for="my-twitter">
+            <img class="input--thumb" src="/images/no-image.png">@<$= __("label-myself") $></label>
+
+        </form>
+
+      </div><!-- / #your-twitter-panel -->
+
+
+    </div><!-- / .container -->
+  </div><!-- / .container-fluid -->
+
+
+
+  <div class="container-fluid border-top p-3 bg-efefef">
+    <div class="container">
+
+      <div class="loading text-center">
+        <div class="loading--icon">
+          <img src="images/loading-indicator.gif" width="100%" alt="">
+        </div>
+      </div><!-- / .loading -->
+
+      <div class="error">
+        <p class="error--message">
+          <$= __("message-error") $>
+        </p>
+      </div><!-- / .error -->
+
+
+      <div class="output">
+
+        <h3 class="output--header"><$= __("title-output") $></h3>
+
+        <div class="mb-5">
+          <div>あなたに最適な Get Wild は・・・</div>
+          <div class="song" id="js-track"></div>
+          <div id="js-spotify"></div>
+        </div>
+
+
+        <h3 class="mb-3"><$= __("title-personality") $></h3>
+
+        <h4 class="mb-3 output--word-count-header"><$= __("label-wordsanalyzed") $> <span class="output--word-count-number">0</span>
+
+          <div class="output--word-count-message output--word-count-message_VERY-STRONG"><$= __("analysis-verystrong") $>
+            <div class="output--word-count-tooltip_VERY-STRONG tooltip"><$= __("analysis-verystrong-desc") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_STRONG"><$= __("analysis-strong") $>
+            <div class="output--word-count-tooltip_STRONG tooltip"><$= __("analysis-strong-desc") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_DECENT"><$= __("analysis-decent") $>
+            <div class="output--word-count-tooltip_DECENT tooltip"><$= __("analysis-decent-desc") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_WEAK"><$= __("analysis-weak") $>
+            <div class="output--word-count-tooltip_WEAK tooltip"><$= __("analysis-weak-desc") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_VERY-STRONG_NEW_MODEL"><$= __("analysis-verystrong") $>
+            <div class="output--word-count-tooltip_VERY-STRONG tooltip"><$= __("analysis-verystrong-desc-new-model") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_STRONG_NEW_MODEL"><$= __("analysis-strong") $>
+            <div class="output--word-count-tooltip_STRONG tooltip"><$= __("analysis-strong-desc-new-model") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_DECENT_NEW_MODEL"><$= __("analysis-decent") $>
+            <div class="output--word-count-tooltip_DECENT_NEW_MODEL tooltip"><$= __("analysis-decent-desc-new-model") $></div>
+          </div>
+          <div class="output--word-count-message output--word-count-message_WEAK_NEW_MODEL"><$= __("analysis-weak") $>
+            <div class="output--word-count-tooltip_WEAK tooltip"><$= __("analysis-weak-desc-new-model") $></div>
+          </div>
+        </h4>
+
+        <div class="output-summary my-3 p-3 border bg-white">
+            <div id="personalitySummary" class="output-summary--summary"></div>
+        </div>
+
 
         <div>
-          <div id="twitter-panel" style="display: none;">
-            <form class="input--form1">
-
-              <div class="base--h5 input--choose">
-                <$= __("option-choose") $>
-              </div>
-
-              <input role="radio" class="base--radio" type="radio" id="twitter-Oprah" name="twitter" value="Oprah" data-lang="en">
-              <label class="base--inline-label input--radio" for="twitter-Oprah">
-                <img class="input--thumb" src="/images/twitter/oprah.png">@Oprah (<$= __("twitterlang-en") $>)</label>
-
-              <input role="radio" class="base--radio" type="radio" id="twitter-KingJames" name="twitter" value="KingJames" data-lang="en">
-              <label class="base--inline-label input--radio" for="twitter-KingJames">
-                <img class="input--thumb" src="/images/twitter/kingjames.jpg">@KingJames (<$= __("twitterlang-en") $>)</label>
-
-              <input role="radio" class="base--radio" type="radio" id="twitter-faridyu" name="twitter" value="faridyu" data-lang="ja">
-              <label class="base--inline-label input--radio" for="twitter-faridyu">
-                <img class="input--thumb" src="/images/twitter/faridyu.jpg">@faridyu (<$= __("twitterlang-ja") $>)</label>
-
-              <div class="input--button-container">
-                <button type="submit" class="btn btn-primary input--submit-button1"><$= __("button-analyze") $></button>
-              </div>
-            </form>
-          </div>
-
-          <div id="your-twitter-panel">
-            <form class="input--form3 auth-form" method='get' action='/auth/twitter'>
-              <p class="base--p" style="text-align:center"><button type="submit" class="btn btn-lg btn-primary input--submit-button3"><$= __("button-analyzetwitter") $></button></p>
-              <p class="base--p">
-                <$= __("note-twitter") $>
-              </p>
-            </form>
-            <form class="input-form4 analysis-form" style="display:none">
-              <div class="base--h5 input--choose">
-                <$= __("analysis-title") $>
-              </div>
-              <input role="radio" class="base--radio" type="radio" id="my-twitter" name="twitter" value="myself">
-              <label class="base--inline-label input--radio" for="my-twitter">
-                <img class="input--thumb" src="/images/no-image.png">@<$= __("label-myself") $></label>
-            </form>
-          </div>
-
+          <small class="inline-block"><$= __("label-whatelse") $></small>
+        </div>
+        <div class="text-right">
+          <small><a href="https://www.ibm.com/watson/jp-ja/developercloud/personality-insights.html?cm_mmc=dw-_-champions-_-champtracker-_-allchamps" target="_blank"><$= __("button-science") $></a></small>
         </div>
 
-    </div>
-  </div>
 
-  <div class="_demo--bg-container">
-    <div class="_demo--container">
-      <div class="_content">
-        
-        <div class="loading">
-          <div class="loading--icon">
-            <img src="images/loading-indicator.gif" width="100%" alt="">
-          </div>
-        </div>
-        <div class="error">
-          <p class="error--message">
-            <$= __("message-error") $>
-          </p>
-        </div>
+      </div><!-- / .output -->
 
-        <div class="output">
-
-          <h3 class="base--h3 output--header"><$= __("title-output") $></h3>
-
-          <div class="mb20">
-            <div>あなたに最適な Get Wild は・・・</div>
-            <div class="lead" id="js-track"></div>
-            <div id="js-spotify"></div>
-          </div>
-
-
-          <h3 class="base--h3"><$= __("title-personality") $></h3>
-
-          <h4 class="base--h4 output--word-count-header"><$= __("label-wordsanalyzed") $> <span class="output--word-count-number">0</span>
-            <div class="output--word-count-message output--word-count-message_VERY-STRONG"><$= __("analysis-verystrong") $>
-              <div class="output--word-count-tooltip_VERY-STRONG tooltip"><$= __("analysis-verystrong-desc") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_STRONG"><$= __("analysis-strong") $>
-              <div class="output--word-count-tooltip_STRONG tooltip"><$= __("analysis-strong-desc") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_DECENT"><$= __("analysis-decent") $>
-              <div class="output--word-count-tooltip_DECENT tooltip"><$= __("analysis-decent-desc") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_WEAK"><$= __("analysis-weak") $>
-              <div class="output--word-count-tooltip_WEAK tooltip"><$= __("analysis-weak-desc") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_VERY-STRONG_NEW_MODEL"><$= __("analysis-verystrong") $>
-              <div class="output--word-count-tooltip_VERY-STRONG tooltip"><$= __("analysis-verystrong-desc-new-model") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_STRONG_NEW_MODEL"><$= __("analysis-strong") $>
-              <div class="output--word-count-tooltip_STRONG tooltip"><$= __("analysis-strong-desc-new-model") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_DECENT_NEW_MODEL"><$= __("analysis-decent") $>
-              <div class="output--word-count-tooltip_DECENT_NEW_MODEL tooltip"><$= __("analysis-decent-desc-new-model") $></div>
-            </div>
-            <div class="output--word-count-message output--word-count-message_WEAK_NEW_MODEL"><$= __("analysis-weak") $>
-              <div class="output--word-count-tooltip_WEAK tooltip"><$= __("analysis-weak-desc-new-model") $></div>
-            </div>
-          </h4>
-
-          <div class="output-summary">
-
-              <h4 class="base--h4"><$= __("title-summary") $></h4>
-              <div id="personalitySummary" class="output-summary--summary">
-                <p class="base--p">
-                  <$= __("label-summary") $>
-                </p>
-              </div>
-
-          </div>
-
-
-
-          <p class="base--p output--more-science">
-              <small class="inline-block"><$= __("label-whatelse") $></small>
-              <a class="small base--a" href="https://www.ibm.com/watson/jp-ja/developercloud/personality-insights.html?cm_mmc=dw-_-champions-_-champtracker-_-allchamps" target="_blank">
-                <$= __("button-science") $>
-              </a>
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
+    </div><!-- / .container -->
+  </div><!-- / .container-fluid -->
 
 
 

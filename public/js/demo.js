@@ -270,8 +270,6 @@ $(document).ready(function() {
   /* Spotify */
   function compareSpotifyEvaluation(data) {
 
-_c( data );
-
     var difference, dTemp; /* 差分の総計 */
     var trackNum; /* おすすめする楽曲No */
     var trackName; /* おすすめする楽曲名 */
@@ -284,18 +282,28 @@ _c( data );
 
       dTemp = 0; // 初期化
 
-      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'personality' ][ 0 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'danceability' ] - data[ 'personality' ][ 1 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'duration_ms' ] - data[ 'personality' ][ 2 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'energy' ] - data[ 'personality' ][ 3 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'instrumentalness' ] - data[ 'personality' ][ 4 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'needs' ][ 10 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'danceability' ] - data[ 'needs' ][ 2 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'duration_ms' ] - data[ 'needs' ][ 6 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'energy' ] - data[ 'personality' ][ 2 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'instrumentalness' ] - data[ 'personality' ][ 3 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'liveness' ] - data[ 'personality' ][ 1 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'loudness' ] - data[ 'needs' ][ 5 ][ 'percentile' ] );
+      // dTemp = dTemp + Math.abs( this[ 'mode' ] - data[ 'needs' ][ 0 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'speechiness' ] - data[ 'personality' ][ 0 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'tempo' ] - data[ 'needs' ][ 3 ][ 'percentile' ] );
+      dTemp = dTemp + Math.abs( this[ 'valence' ] - data[ 'personality' ][ 4 ][ 'percentile' ] );
 
-      dTemp = dTemp + Math.abs( this[ 'liveness' ] - data[ 'needs' ][ 0 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'loudness' ] - data[ 'needs' ][ 1 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'mode' ] - data[ 'needs' ][ 2 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'speechiness' ] - data[ 'needs' ][ 3 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'tempo' ] - data[ 'needs' ][ 4 ][ 'percentile' ] );
-      dTemp = dTemp + Math.abs( this[ 'valence' ] - data[ 'needs' ][ 5 ][ 'percentile' ] );
+      // 補正値
+      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 1 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 2 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'danceability' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 3 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'energy' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 6 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'instrumentalness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 8 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'liveness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 4 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'loudness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 7 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'speechiness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 0 ][ 'score' ] * 0.1 );
+      dTemp = dTemp + Math.abs( this[ 'tempo' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 5 ][ 'score' ] * 0.1 );
 
 
       if( difference > dTemp ){
@@ -312,8 +320,8 @@ _c( data );
     url = trackURI[2];
 
     // 楽曲を表示
-    $( '#js-track' ).text( '#' + trackNum + ' ' + trackName + ' - ' + trackArtists );
-    $( '#js-spotify' ).html( '<a href="https://open.spotify.com/track/' + url + '" target="_blank">' + 'この曲を Spotify で聴く' + '</a>' );
+    $( '#js-track' ).html( '#' + trackNum + ' ' + trackName + '<br><small>' + trackArtists + '</small>' );
+    $( '#js-spotify' ).html( '<a href="https://open.spotify.com/track/' + url + '" target="_blank"><i class="fab fa-spotify"></i> ' + 'この曲を Spotify で聴く' + '</a>' );
 
   }
 
