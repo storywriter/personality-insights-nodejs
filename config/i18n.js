@@ -21,34 +21,34 @@ var i18n = require('i18n');
 const initializeI18n = (app) => {
   i18n.configure({
     locales: [
-      'en', 'es', 'ja','ko'
+      'ja'
     ],
     fallbacks: {
-      'en-US': 'en',
-      'es-AR': 'es',
-      'es-BO': 'es',
-      'es-CL': 'es',
-      'es-CO': 'es',
-      'es-CR': 'es',
-      'es-DO': 'es',
-      'es-EC': 'es',
-      'es-SV': 'es',
-      'es-GT': 'es',
-      'es-HN': 'es',
-      'es-MX': 'es',
-      'es-NI': 'es',
-      'es-PA': 'es',
-      'es-PY': 'es',
-      'es-PE': 'es',
-      'es-PR': 'es',
-      'es-ES': 'es',
-      'es-UY': 'es',
-      'es-VE': 'es',
+      'en-US': 'ja',
+      'es-AR': 'ja',
+      'es-BO': 'ja',
+      'es-CL': 'ja',
+      'es-CO': 'ja',
+      'es-CR': 'ja',
+      'es-DO': 'ja',
+      'es-EC': 'ja',
+      'es-SV': 'ja',
+      'es-GT': 'ja',
+      'es-HN': 'ja',
+      'es-MX': 'ja',
+      'es-NI': 'ja',
+      'es-PA': 'ja',
+      'es-PY': 'ja',
+      'es-PE': 'ja',
+      'es-PR': 'ja',
+      'es-ES': 'ja',
+      'es-UY': 'ja',
+      'es-VE': 'ja',
       'ja-JP': 'ja',
-      'ko-KR': 'ko'
+      'ko-KR': 'ja'
     },
     directory: __dirname + '/../i18n',
-    defaultLocale: 'en'
+    defaultLocale: 'ja'
   });
 
   app.use(i18n.init);
