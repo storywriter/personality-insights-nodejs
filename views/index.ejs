@@ -69,6 +69,7 @@
         <div class="loading--icon">
           <img src="images/loading-indicator.gif" width="100%" alt="">
         </div>
+        <small>分析しています...<br>数秒から数十秒で完了します...</small>
       </div><!-- / .loading -->
 
       <div class="error">
@@ -83,11 +84,18 @@
         <h3 class="output--header"><$= __("title-output") $></h3>
 
         <div class="mb-5">
-          <div>あなたに最適な Get Wild は・・・</div>
+          <div>あなたに最強の Get Wild は・・・</div>
           <div class="song" id="js-track"></div>
           <div id="js-spotify"></div>
         </div>
 
+        <!-- Twitter -->
+        <div class="mb-5">
+          <small>この結果を Twitter でシェアしよう！</small>
+          <div>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="" data-url="https://getwild.mybluemix.net" data-show-count="false" id="js-twitter">Tweet</a>
+          </div>
+        </div>
 
         <h3 class="mb-3"><$= __("title-personality") $></h3>
 
@@ -139,24 +147,26 @@
 
 
 
-
-
-
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-url-parser/2.3.1/purl.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<!-- 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/5.0.2/markdown-it.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+-->
 
   <script type="text/javascript" src="js/vendors/q.js"></script>
   <script type="text/javascript" src="js/components/q_util.js"></script>
+<!--
   <script type="text/javascript" src="js/components/tab-panels.js"></script>
-
+-->
   <script type="text/javascript" src="vendor/personality-text-summary/dist/index.js"></script>
   <script type="text/javascript" src="vendor/personality-trait-info/dist/index.js"></script>
   <script type="text/javascript" src="vendor/personality-trait-descriptions/dist/index.js"></script>
   <script type="text/javascript" src="vendor/personality-trait-names/dist/index.js"></script>
   <script type="text/javascript" src="vendor/personality-consumption-preferences/dist/index.js"></script>
+<!--
   <script type="text/javascript" src="js/sunburst.js"></script>
+-->
 
   <script type="text/javascript" src="js/demo.js"></script>
   <script type="text/javascript" src="js/consumption-preferences-likely-sort.js"></script>
@@ -168,6 +178,9 @@
     var OUTPUT_LANG = '<$= locale $>';
   </script>
 
+<!--
   <script type="text/javascript" src="https://cdn.rawgit.com/watson-developer-cloud/watson-developer-cloud.github.io/master/analytics.js" />
+-->
+
 </body>
 </html>

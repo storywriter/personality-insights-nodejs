@@ -295,15 +295,15 @@ $(document).ready(function() {
       dTemp = dTemp + Math.abs( this[ 'valence' ] - data[ 'personality' ][ 4 ][ 'percentile' ] );
 
       // 補正値
-      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 1 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'acousticness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 2 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'danceability' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 3 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'energy' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 6 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'instrumentalness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 8 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'liveness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 4 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'loudness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 7 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'speechiness' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 0 ][ 'score' ] * 0.1 );
-      dTemp = dTemp + Math.abs( this[ 'tempo' ] - data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 5 ][ 'score' ] * 0.1 );
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 1 ][ 'score' ] * 0.1 ); // acousticness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 2 ][ 'score' ] * 0.1 ); // acousticness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 3 ][ 'score' ] * 0.1 ); // danceability
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 6 ][ 'score' ] * 0.1 ); // energy
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 8 ][ 'score' ] * 0.1 ); // instrumentalness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 4 ][ 'score' ] * 0.1 ); // liveness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 7 ][ 'score' ] * 0.1 ); // loudness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 0 ][ 'score' ] * 0.1 ); // speechiness
+      dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 5 ][ 'score' ] * 0.1 ); // tempo
 
 
       if( difference > dTemp ){
@@ -322,6 +322,7 @@ $(document).ready(function() {
     // 楽曲を表示
     $( '#js-track' ).html( '#' + trackNum + ' ' + trackName + '<br><small>' + trackArtists + '</small>' );
     $( '#js-spotify' ).html( '<a href="https://open.spotify.com/track/' + url + '" target="_blank"><i class="fab fa-spotify"></i> ' + 'この曲を Spotify で聴く' + '</a>' );
+    $( '#js-twitter' ).attr( 'data-text', '俺に最強の Get Wild は...「#' + trackNum + ' ' + trackName + ' / ' + trackArtists + '」' );
 
   }
 
@@ -445,7 +446,11 @@ $(document).ready(function() {
         $output.show();
         scrollTo($outputHeader);
 
+        // Spotify
         compareSpotifyEvaluation( data );
+
+        // twitter
+        $( 'body' ).append( '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></scr' + 'ipt>' );
 
         loadOutput(data);
         updateJSON(data);
