@@ -322,7 +322,7 @@ $(document).ready(function() {
     // 楽曲を表示
     $( '#js-track' ).html( '#' + trackNum + ' ' + trackName + '<br><small>' + trackArtists + '</small>' );
     $( '#js-spotify' ).html( '<a href="https://open.spotify.com/track/' + url + '" target="_blank"><i class="fab fa-spotify"></i> ' + 'この曲を Spotify で聴く' + '</a>' );
-    $( '#js-twitter' ).attr( 'data-text', '俺に最強の Get Wild は...「#' + trackNum + ' ' + trackName + ' / ' + trackArtists + '」だぜ！：俺に最強の Get Wild を Watson が選んでくれる' );
+    $( '#js-twitter' ).attr( 'data-text', '俺に最強の Get Wild は...「#' + trackNum + ' ' + trackName + ' / ' + trackArtists + '」だぜ！' );
 
   }
 
