@@ -305,7 +305,8 @@ $(document).ready(function() {
       dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 0 ][ 'score' ] * 0.1 ); // speechiness
       dTemp = dTemp - ( data[ 'consumption_preferences' ][ 5 ][ 'consumption_preferences' ][ 5 ][ 'score' ] * 0.1 ); // tempo
 
-_c( this[ 'track_number' ] + ' ' + this[ 'name' ] + ' - ' + String( dTemp ) );
+      // デバッグ用
+      _c( this[ 'track_number' ] + ' ' + this[ 'name' ] + ' - ' + String( dTemp ) );
 
       if( difference > dTemp ){
         difference = dTemp;
