@@ -1,3 +1,11 @@
+# 俺に最強の Get Wild を Watson が選んでくれる
+
+Get Wild、好きですか？ アスファルト、タイヤを切りつけながら、暗闇走り抜けてますか？ TM NETWORK の アルバム「GET WILD 30th Anniversary Collection」には、36バージョンの Get Wild が収録されています。な…何を言っているのか、わからねーと思うが…Watson が Spotify とつながって、俺に最適な Get Wild を選んでくれます。
+
+デモサイト: <a href="https://getwild.mybluemix.net/">https://getwild.mybluemix.net/</a>
+
+-----
+
 <h1 align="center" style="border-bottom: none;">🚀 Personality Insights Sample Application</h1>
 <h3 align="center">This Node.js app demonstrates how to analyze text and tweets using Personality Insights.</h3>
 <p align="center">
